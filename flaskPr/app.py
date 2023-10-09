@@ -13,6 +13,7 @@ app.register_blueprint(page2_bp)
 app.register_blueprint(add_bp)
 
 
+
 if __name__ == '__main__':
     app.run()
 
