@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Страница 2</title>
+</head>
+<body>
+    {% block sidebar %}
+      {% include "sidebar.html" %}
+    {% endblock %}
+    <h1>Страница 2</h1>
+</body>
+</html>
