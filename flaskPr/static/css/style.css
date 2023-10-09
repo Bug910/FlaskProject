@@ -1,0 +1,48 @@
+body{
+ padding:0px;
+ margin:0px;
+}
+h1{
+ margin: 0px;
+}
+.sidebar {
+  width: calc(100% / 6);
+  height: 100vh;
+  background-color: #f2f2f2;
+  float: left;
+  padding:0px;
+  margin:0px;
+}
+
+.table {
+  margin: 0 auto;
+  width: 75%;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tr:hover {
+  background-color: #ddd;
+}
+
+.pagination {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.pagination a {
+  display: inline-block;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #000;
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}

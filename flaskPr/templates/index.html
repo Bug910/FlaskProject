@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Таблица</title>
+</head>
+<body>
+    {% block sidebar %}
+      {% include "sidebar.html" %}
+    {% endblock %}
+    <a href="{{ url_for('add.add') }}">Добавить таблицу</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Имя</th>
+                <th>Возраст</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="4">
+                    <form action="{{ url_for('main.index') }}" method="get">
+                        <label for="filter_id">Фильтр по ID:</label>
+                        <input type="text" name="filter_id" id="filter_id" value="{% if filter_id is defined and filter_id %}{{ filter_id }}{% endif %}" {% if not filter_id %}placeholder="Введите ид"{% endif %}>
+                        <input type="submit" value="Применить">
+                    </form>
+                </td>
+            </tr>
+            {% for row in data %}
+            <tr>
+                <td>{{ row.id }}</td>
+                <td>{{ row.name }}</td>
+                <td>{{ row.age }}</td>
+                <td>
+                    <a href="{{ url_for('edit.edit', id=row.id) }}">Редактировать</a>
+                </td>
+                <td>
+                   <form action="{{ url_for('main.run_function') }}" method="post"><input type="submit" value="Run Function"></form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% if pagination %}
+<div class="pagination">
+  {% if pagination.prev_page %}
+    <a href="/?page={{ pagination.prev_page }}{% if filter_id %}&filter_id={{ filter_id }}{% endif %}" class="btn">Previous</a>
+  {% endif %}
+
+  {% for page_num in pagination.page_list %}
+    {% if page_num == pagination.page %}
+      <span class="current-page">{{ page_num }}</span>
+    {% else %}
+      <a href="/?page={{ page_num }}{% if filter_id %}&filter_id={{ filter_id }}{% endif %}" class="btn">{{ page_num }}</a>
+    {% endif %}
+  {% endfor %}
+
+  {% if pagination.next_page %}
+    <a href="/?page={{ pagination.next_page }}{% if filter_id %}&filter_id={{ filter_id }}{% endif %}" class="btn">Next</a>
+  {% endif %}
+</div>
+{% endif %}
+</body>
+</html>
